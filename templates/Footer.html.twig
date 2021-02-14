@@ -1,0 +1,45 @@
+{# templates/Footer.html.twig #}
+
+<footer id="pie" class="page-footer font-small mdb-color lighten-3 bg-dark mt-5">
+  <div class="container text-center text-md-center">
+    <div class="row">
+        
+      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-1 mb-1">
+        <button type="button" class="btn btn-sm m-1 text-light" disabled>
+             <img src="{{ '../img/iconos/phone.png' }}" title="Nuestro telefono" onerror="ImgError(this)">
+             <br>543543534
+         </button>
+      </div>
+
+      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-1 mb-1">
+       <a href="mailto:BlockBoomer@ALGO.com">
+           <button type="button" class="btn btn-sm m-1 text-light">
+                <img src="{{ '../img/iconos/gmail.png' }}" title="Nuestro Gmail" onerror="ImgError(this)">
+                <br>BlockBoomer@gmail.com
+         </button>
+       </a>
+      </div>
+
+      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-1 mb-1">
+        <button id="facebook" type="button" class="btn btn-sm m-1 text-light">
+            <img src="{{ '../img/iconos/facebook.png' }}" title="Nuestro Facebook" onerror="ImgError(this)">
+            <br>Nuestro Facebook
+         </button>
+      </div>
+    
+      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-1 mb-1">
+          <button id="horario" type="button" class="btn btn-sm m-1 text-light" disabled>
+            <img src="{{ '../img/iconos/reloj.png' }}" title="Nuestro Horario" onerror="ImgError(this)">
+            <br>Lunes a Viernes
+            <br>9:00h. - 17:00h
+         </button>
+      </div>
+     </div>
+    </div>
+</footer>
+
+<script>
+    $("#facebook").click(function () {
+       window.location.href="https://www.facebook.com/GatosdomesticosOficial";
+    });
+</script>

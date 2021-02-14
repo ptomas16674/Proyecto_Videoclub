@@ -1,0 +1,62 @@
+{# templates/Admin.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Block Boomer</title>
+                <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+            {% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('(css/bootstrap.min.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('css/otros_estilos.css') }} " type="text/css">
+        {% endblock %}
+    </head>
+    <body class="text-light">
+		{% block body %}
+        <header>
+            {% block header %}
+		{{ include('cabecera.html.twig') }}
+            {%endblock %}
+        </header>
+        <div class="container-fluid justify-content-center">
+            <h1 class="text-uppercase mb-5">Bienvenido, {{ app.user.username }}</h1>
+            {% if app.user.codigo==2223 %}
+                <img class="img_iconos" src="{{ '/img/empleados/'~ app.user.codigo ~ '.gif' }}" onerror="ImgError(this)">
+            {% else %}
+                <img class="img_iconos" src="{{ '/img/empleados/'~ app.user.codigo ~ '.jpg' }}" onerror="ImgError(this)">
+            {% endif %}
+            
+            
+              <div class="row">
+                 <div class="col-md">
+                    <img class="img_iconos" src="{{ "img/iconos/trabajador.png" }}" alt="Gestión Personal">
+                    <button id="trabajadores" type="button" class="btn btn-outline-light btn-lg">Gestionar Personal</button>
+                  </div>
+                  <div class="col-md">
+                    <img class="img_iconos" src="{{ "img/iconos/inventario.png" }}" alt="Gestión Inventario">
+                    <button id="inventario" type="button" class="btn btn-outline-light btn-lg">Gestionar Inventario</button>
+                  </div>
+             </div>
+        </div>
+                    
+    <script>
+       $("#login_boton").hide();
+       $("#trabajadores").click(function(){
+          route="{{ path('Admin_Personal')}}";
+          window.location.href=route;           
+       });
+       $("#inventario").click(function(){
+          route="{{ path('Admin_Inventario')}}";
+          window.location.href=route;           
+       });
+       
+        function ImgError(source){
+               source.src = "/img/default.png";
+               source.onerror = "";
+               return true;
+            }
+    </script>
+    {% endblock %}
+    </body>
+</html>

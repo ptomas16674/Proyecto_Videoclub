@@ -1,0 +1,47 @@
+       <div id="mo_history" class="modal fade bd-example-modal-lg p-2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div  id="mod" class="modal-content">
+                <div>
+                    <button type="button" class="close" aria-label="Close"  data-backdrop="false"  data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <img id="primer_tienda" src="{{ "img/primer_tienda.jpg" }}" alt="Primera tienda de Block Boomer">
+                    <figcaption>Nuestra Primera tienda de Block Boomer</figcaption>
+                    <br>
+                    Fundado en 1952, este local fue inagurado por el mismísimo Alcalde Don Juan Tenório. A partir de este punto, la tienda tendría una clientela
+                    constante, que se propaga hasta los días de la creación de servicios en línea como Netflix.<br>
+                    Algo me dice que esta tecnología va a quedar obsoleta.<br>
+                    No obstante, después de un incendio en 1995, la fachada quedó destuida, así como el nombre y logotipo.
+                    Debiado a esto, se reformó el local entero y ya de paso, se renombró a Block Boomer® para evitar a los abogados de cierta compañia.
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+    <div id="mo_exitos" class="modal fade bd-example-modal-lg p-2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div  id="mod" class="modal-content">
+                <div>
+                    <img id="trofeo" src="{{ "img/iconos/trofeo.png" }}" alt="Primera tienda de Block Boomer">
+                    <button id="cerrar" type="button" class="close" aria-label="Close"  data-backdrop="false"  data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <br>
+                    Hacia nuestro camino al éxito, hemos obtenido las siguientes cifras:
+                    <div id="dato0">--> 1,000,000 de ventas en el primer año de apertura</div>
+                    <div id="dato1">--> 200.000.000 dolares en recaudación en<br> los primeros 2 años</div>
+                    <div id="dato2">--> 5/5 en más de 100.000 reseñas de los clientes en todo momento</div>
+                    <div id="dato3">--> 3.000.000 de clientes atendidos en la primera década</div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+                    
+       <div id="mo_empleados" class="modal fade bd-example-modal-lg p-2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div  id="mod" class="modal-content">
+                <div>
+                    <button id="cerrar" type="button" class="close" aria-label="Close"  data-backdrop="false"  data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <br>
+                     {{ render(controller('App\\Controller\\Home::Home_Empleados'))}}
+                </div>
+            </div>
+        </div>
+    </div>

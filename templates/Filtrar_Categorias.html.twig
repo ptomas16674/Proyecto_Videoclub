@@ -1,0 +1,115 @@
+{# templates/Filtrar_Categorias.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Block Boomer</title>
+               <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+                <script src="../public/js/otros.js" type="text/javascript"></script>
+            {% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('(css/bootstrap.min.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('css/otros_estilos.css') }} " type="text/css">
+        {% endblock %}
+    </head>
+    <body>
+	{% block body %}   
+            {% block header %}
+                <header>
+		{{ include('cabecera.html.twig') }}
+                </header>
+            {%endblock %}            
+             <div class="container-fluid justify-content-center">
+                  <div class="row">
+     
+               {% if nombres is defined %}
+                   {% set tam_array = nombres | length %}
+                        {% for i in range(0,tam_array)  %}
+                            {% if (nombres[i] is defined) %}
+                                <div class="col-md">
+                                    <img class="img_iconos" src="{{ '../img/caratulas/'~ nombres[i].id ~ '.jpg' }}" onerror="ImgError(this)" title="{{ nombres[i].nombre_pelicula }}">
+                                    <button  type="button" class="btn btn-outline-light btn-lg mt-2" data-toggle="modal" data-target="#mo_{{ nombres[i].id }}">Detalles</button>
+                                </div>
+                            {% endif %}
+                        {% endfor %}  
+                    {{ include ('Catalogo_Modal.html.twig') }}   
+               {% endif %} 
+               
+               {% if genero is defined %}
+                    {% set tam_array = genero | length %}
+                        {% for i in range(0,tam_array)  %}
+                            {% if (genero[i] is defined) %}  
+                                <div class="col-md">
+                                    <img class="img_iconos" src="{{ '../img/generos/'~ genero[i].genero ~ '.png' }}" onerror="ImgError(this)">
+                                    <a href="{{ path('FiltrarGeneros', {'genero': genero[i].genero}) }}"><button type="button" class="btn btn-outline-light btn-lg m-4">{{ genero[i].genero }}</button></a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}  
+            {% endif %}
+
+            {% if fecha_lanzamiento is defined %}
+                  {% set tam_array = fecha_lanzamiento | length %}
+                    {% for i in range(0,tam_array)  %}
+                            {% if (fecha_lanzamiento[i] is defined) %}  
+                                <div class="col-md">
+                                     <a href="{{ path('Filtrar_Fecha', {'fecha': fecha_lanzamiento[i].fecha_lanzamiento}) }}"><button type="button" class="btn btn-outline-light btn-lg m-4">{{ fecha_lanzamiento[i].fecha_lanzamiento }}</button></a>
+                                </div>
+                            {% endif %}
+                    {% endfor %}  
+        {% endif %} 
+
+        {% if Duracion is defined %}
+                {% set tam_array = Duracion | length %}
+                    {% for i in range(0,tam_array)  %}
+                            {% if (Duracion[i] is defined) %}  
+                                <div class="col-md">
+                                     <a href="{{ path('FiltrarDuracion', {'duracion': Duracion[i].Duracion}) }}"><button type="button" class="btn btn-outline-light btn-lg m-4">{{ Duracion[i].Duracion }} minutos</button></a>
+                                </div>
+                            {% endif %}
+                   {% endfor %}  
+        {% endif %} 
+
+        {% if precio is defined %}
+                {% set tam_array = precio | length %}
+                    {% for i in range(0,tam_array)  %}
+                            {% if (precio[i] is defined) %}  
+                                <div class="col-md">
+                                     <a href="{{ path('FiltrarPrecio', {'precio': precio[i].precio}) }}"><button type="button" class="btn btn-outline-light btn-lg m-4">{{ precio[i].precio }}€ </button></a>
+                                </div>
+                            {% endif %}
+                    {% endfor %}  
+        {% endif %} 
+
+        {% if origen is defined %}
+                       {% set tam_array = origen | length %}
+                         {% for i in range(0,tam_array)  %}
+                            {% if (origen[i] is defined) %}  
+                                <div class="col-md">
+                                    <img class="img_iconos" src="{{ '../img/paises/'~ origen[i].origen ~ '.png' }}" onerror="ImgError(this)">
+                                    <a href="{{ path('FiltrarPais', {'pais': origen[i].origen}) }}"><button type="button" class="btn btn-outline-light btn-lg m-4">{{ origen[i].origen }}</button></a>
+                                </div>
+                            {% endif %}
+                         {% endfor %}   
+        {% endif %}  
+          </div> 
+        </div>
+          
+        {% block footer %}
+           {{ include('Footer.html.twig') }}
+        {% endblock %}
+        
+        {% block javascripts %}
+            <script>
+                function ImgError(source){
+                    source.src = "/img/default.png";
+                    source.onerror = "";
+                    return true;
+                }
+            </script>
+        {% endblock %}
+        
+        {% endblock %}
+        
+    </body>
+</html>

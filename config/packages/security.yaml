@@ -1,0 +1,25 @@
+security:
+    providers:
+         pedidos:
+             entity:
+                 class: App\Entity\User
+                 property: Alias
+    encoders:
+         App\Entity\User:
+          algorithm: plaintext
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            form_login:
+                login_path: Login
+                check_path: Login
+                default_target_path: Admin
+            logout:
+                path:   /logout
+                target: /Home  
+                delete_cookies: ['usuario']
+        
+        

@@ -1,0 +1,56 @@
+{# templates/AddInventario.html.twig #}
+{% if app.user %}
+             {% if app.user.Admin==1 %}
+                <form action="{{ path('FormAddInventario') }}" method="post">
+                        <div class="form-group">
+                             <table class="table table-striped table-hover table-responsive-xl w-auto table-dark mt-2" id="tabla_personal">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>Nombre</th>
+                                        <th>Fecha Lanzamiento</th>
+                                        <th>Genero</th>
+                                        <th>Origen</th>
+                                        <th>Duración</th>
+                                        <th>Estado</th>
+                                        <th>Precio</th>
+                                    </tr>
+                                </thead>
+                        <tr class="text-center">                                                        
+                            <td>
+                                <input type="text" id="nombre_pelicula" name="nombre_pelicula" class="form-control form-control-sm" required="required" />
+                            </td>
+                            
+                            <td>
+                                 <input type="number" min="0" id="fecha_lanzamiento" name="fecha_lanzamiento" class="form-control form-control-sm" required="required"/>
+                            </td>
+                            
+                            <td>
+                                <input type="text" id="genero" name="genero" class="form-control form-control-sm" required="required" />
+                            </td>
+                            
+                            <td>
+                                <input type="text" id="origen" name="origen" class="form-control form-control-sm" required="required" />
+                            </td>
+                            
+                            <td>
+                                 <input type="number" min="0" id="Duracion" name="Duracion" class="form-control form-control-sm" required="required"/>
+                            </td>
+                            
+                            <td>
+                                <input type="text" min="0" max="1" id="estado" name="estado" class="form-control form-control-sm" required="required" />
+                            </td>
+                            
+                            <td>
+                                <input type="number" min="0" max="999" id="precio" name="precio" class="form-control form-control-sm" required="required" />
+                            </td>
+                            
+                            
+                        </tr>
+                    </table>
+            </div>
+                    <button type="submit" class="btn btn-success">Confirmar</button>
+       </form>
+   {% else %}
+     {{ include('ErrorPermisos.html.twig') }}
+  {% endif %}
+{% endif %}

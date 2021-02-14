@@ -1,0 +1,82 @@
+{# templates/Empleados_Destacados.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Block Boomer</title>
+                <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/scripts_Home.js') }}" type="text/javascript"></script>
+            {% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('(css/bootstrap.min.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('css/otros_estilos.css') }} " type="text/css">
+        {% endblock %}
+    </head>
+    
+    {% block body %}
+    <body class="text-light">
+            
+    {% if error_empleados is defined %}
+            <img id="error_img" src="{{ "img/iconos/error.png" }}" alt="Error">
+         <h1>
+            Lo siento, no existen empleados destacados por el momento.
+         </h1>
+         
+         {% else %}
+    
+             <img id="premio" src="{{ "img/iconos/medal.png" }}" alt="Medalla">
+                    
+        <div  class="container-fluid justify-content-center">           
+            <div class="row d-flex">
+                <div id="mejores_empleados">
+                <img  src="{{ "../img/empleados/12.jpg" }}"><br>
+                {{ datos[0].Nombre }} {{ datos[0].Apellido }}<br>
+                Fecha Nacimiento: {{ datos[0].FechaNacimiento }}<br>
+                Fecha de Inicio: {{ datos[0].FechaInicio }}<br>
+                Despido: {{ datos[0].FechaFinal }}<br>
+                Logros destacados:<br>
+                Fue la primera que llegó a ser directora durante un breve tiempo<br>
+                También fue la segunda en alquilar 1.000 peliculas en un periodo de 1 año<br>
+                </div>
+
+                <div id="mejores_empleados">
+                <img  src="{{ "../img/empleados/101.jpg" }}"><br>
+                {{ datos[1].Nombre }} {{ datos[1].Apellido }}<br>
+                Fecha Nacimiento: {{ datos[1].FechaNacimiento }}<br>
+                Fecha de Inicio: {{ datos[1].FechaInicio }}<br>
+                Despido: Aún en plantilla<br>
+                Logros destacados:<br>
+                Fue empleado del mes durante 11 meses consecutivos,el año anterior de su despido<br>
+                Poco se sabe de sus futuros proyectos,esperamos lo mejor para él<br>
+                </div>
+
+                <div id="mejores_empleados">
+                <img style="height: 128px;width: 128px" src="{{ "../img/empleados/202.jpg" }}"><br>
+                {{ datos[2].Nombre }} {{ datos[2].Apellido }}<br>
+                Fecha Nacimiento: {{ datos[2].FechaNacimiento }}<br>
+                Fecha de Inicio: {{ datos[2].FechaInicio }}<br>
+                Despido: {{ datos[2].FechaFinal }}<br>
+                Logros destacados:<br>
+                Ahhhh,uno de los padres fundadores de esta casa<br>
+                Fue él,junto a un muchacho anónimo, quienes crearon con un capital mínimo,<br>
+                esta gran cadena.<br>
+                </div>
+
+                <div id="mejores_empleados">
+                <img style="height: 128px;width: 128px" src="{{ "../img/empleados/912.jpg" }}"><br>
+                {{ datos[3].Nombre }} {{ datos[3].Apellido }}<br>
+                Fecha Nacimiento: {{ datos[3].FechaNacimiento }}<br>
+                Fecha de Inicio: {{ datos[3].FechaInicio }}<br>
+                Despido: {{ datos[3].FechaFinal }}<br>
+                Logros destacados:<br>
+                Una historia curiosa...<br>
+                Ganó mucho dinero con la lotería<br>
+                se lo gastó todo en drogas<br>
+                </div>             
+            </div>
+        </div>
+	{% endif %}
+    {% endblock %}
+    </body>
+</html>

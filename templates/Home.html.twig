@@ -1,0 +1,80 @@
+{# templates/Home.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Block Boomer</title>
+                <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/scripts_Home.js') }}" type="text/javascript"></script>
+            {% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('(css/bootstrap.min.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('css/otros_estilos.css') }} " type="text/css">
+        {% endblock %}
+    </head>
+    <body class="text-light">
+		{% block body %}
+        <header>
+            {% block header %}
+		{{ include('cabecera.html.twig') }}
+            {%endblock %}
+        </header>
+           <h1 class="text-center text-light text-uppercase mb-5"><img class="img_iconos" src="{{ '../img/iconos/home.png' }}" onerror="ImgError(this)">HOME</h1>
+        
+	{% block contenido%}
+           <div class="container-fluid justify-content-center">
+              <div class="row">
+                 <div class="col-md">
+                    <img id="img_inicio" src="{{ "img/iconos/historia.png" }}" alt="Historia">
+                    <button id="historia" type="button" class="btn btn-outline-light btn-lg" data-toggle="modal" data-target="#mo_history">Nuestra Historia</button>
+                  </div>
+                    
+                  <div class="col-md">
+                    <img id="img_inicio" src="{{ "img/iconos/exito.png" }}" alt="Exitos">
+                    <button id="exitos" type="button" class="btn btn-outline-light btn-lg" data-toggle="modal" data-target="#mo_exitos">Nuestros Éxitos</button>
+                  </div>
+                                 
+                   <div class="col-md">
+                     <img id="img_inicio" src="{{ "img/iconos/empleado.png" }}" alt="Personal">
+                     <button id="empleados_clientes" type="button" class="btn btn-outline-light btn-lg" data-toggle="modal" data-target="#mo_empleados">Nuestros Empleados Destacados</button>
+                   </div>
+              </div>
+                     
+                <div class="row">
+                    <div id="cat" class="col-md">
+                         <img id="img_inicio" src="{{ "img/iconos/dvd.png" }}" alt="Catálogo">
+                         <button id="ir_catalogo"  type="button" class="btn btn-outline-light btn-lg">Catálogo</button>
+                    </div>
+                         
+                    <div id="cat" class="col-md">
+                         <img id="img_inicio" src="{{ "img/iconos/mapa.png" }}" alt="Mapa">
+                         <button id="ir_catalogo"  type="button" class="btn btn-outline-light btn-lg" data-toggle="modal" data-target="#modal_mapa">Ubicación</button>
+                    </div>
+                         
+                    <div id="cat" class="col-md">
+                         <img id="img_inicio" src="{{ "img/iconos/imdb.png" }}" alt="imdb">
+                         <button id="ir_catalogo"  type="button" class="btn btn-outline-light btn-lg" data-toggle="modal" data-target="#modal_IMDB">Datos IMDB</button>
+                    </div>
+                </div>
+                       
+                {{ include('ModalMapa.html.twig') }}
+                {{ include('ModalEmpleadosDestacados.html.twig') }}
+                {{ include('ModalIMDB.html.twig') }}
+           </div>
+        {% block javascripts %}
+        <script>
+           $("#ir_catalogo").click(function(){
+               route="{{ path('Catalogo')}}";
+               window.location.href=route; 
+            });
+        </script>
+        {% endblock %}
+        
+            {% block footer %}
+                {{ include('Footer.html.twig') }}
+            {% endblock %}
+	{% endblock%}
+    {% endblock %}
+    </body>
+</html>

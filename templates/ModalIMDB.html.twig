@@ -1,0 +1,67 @@
+<div id="modal_IMDB" class="modal fade bd-example-modal-lg p-2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div  id="mod" class="modal-content">
+            <div>
+                    <button type="button" class="close mb-3" aria-label="Close"  data-backdrop="false" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <input type="text"  id="nombre" name="nombre" class="form-control form-control-sm" placeholder="Nombre pelicula" />
+                    <button id="enviar" type="button" class="btn btn-success mt-5">Buscar</button>
+                    
+                    <div id="info" class="justify-content-center mt-5">
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% block javascripts %}
+                <script>
+                    $("#enviar").click(function(){
+                         let nombre=document.getElementById("nombre").value;
+                         jQuery.ajax({
+                             "async": true,
+                             "crossDomain": true,
+                             "url": "http://www.omdbapi.com/?apikey=42a2ded0&t="+nombre+"&r=json",
+                             "method": "GET",
+                             "dataType": 'json'
+                         }).then(function (results){                                     
+                                   if (results.Title===undefined){
+                                       $("#enviar").hide();
+                                       $("#nombre").hide();
+                                       
+                                       let error="<h1>Lo siento, no existe ninguna pelicula con el título "+document.getElementById("nombre").value+"</h1>";
+                                       $("#info").html(error);
+                                       $("#info").fadeOut(3500);
+                                       
+                                        setTimeout(function(){$("#info").fadeIn(),$("#info").html(""),$("#enviar").show(),$("#nombre").show(); }, 4000);
+                                   }else{
+                                                                           
+                                        $("#enviar").hide();
+                                        $("#nombre").hide();
+                                   
+                                        var poster = document.createElement("div");
+                                        poster.innerHTML="<img  id=poster src="+results.Poster+" >";
+                                        document.getElementById("info").appendChild(poster); 
+
+                                        var texto = document.createElement("p");
+                                        texto.innerHTML="\
+                                        <p> Titulo: "+results.Title+"<br> Año: "+results.Year+"<br> Clasificación de Edad: "+ results.Rated+"<br> Fecha Lanzamiento: "+results.Released+
+                                         "<br> Duración: "+results.Runtime+"</p>";
+                                        document.getElementById("info").appendChild(texto);
+
+                                        var volver = document.createElement("div");
+                                        volver.innerHTML="<button id=modal_IMDB_cerrar type=button class='btn btn-outline-light btn-lg'>Volver</button>";
+                                        document.getElementById("info").appendChild(volver);
+                                        
+                                        $("#modal_IMDB_cerrar").click(function(){
+                                            $("#info").html("");
+                                            $("#enviar").show();
+                                            $("#nombre").show();
+                                        });
+                                   }
+                                });
+                    });
+                  </script>
+            {% endblock %}

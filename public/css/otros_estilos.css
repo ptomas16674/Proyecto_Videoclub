@@ -1,0 +1,188 @@
+body{
+    text-align: center;
+    background-image: url("../../img/fondos/peliculas.png") !important;
+    no-repeat: center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+
+#logo{
+    font-size: 200px;
+    font-family: "impact";
+    display: flex;
+    justify-content: center;
+}
+
+#nav{
+     background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+#buscar_img{
+    width: 50px;
+    height: 50px;
+}
+
+#entrada_img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 300px;
+}
+
+#welcome{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+}
+
+#img_inicio{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2%;
+  width: 100px;
+  border: 5px dashed gray;
+}
+
+#mod{
+ background-color: black !important;  
+}
+
+#primer_tienda{
+    height: 300px;
+    width: 300px;
+    margin-bottom: 2px;
+    margin-top: 7%;
+    border: 5px solid #fff;
+}
+
+.close{
+    color: #F6F20C;
+    font-size: 50px;
+}
+
+#trofeo{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 4%;
+}
+
+#cat{
+    padding-top: 5%;
+}
+
+#premio{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 5%;
+}
+
+#mejores_empleados{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+#error_img{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 5%;
+}
+
+#pie{
+    margin: auto;
+    padding-top: 2%;
+}
+
+#boton_volver{
+    margin: 2%;
+    background: none;
+    border: none;
+}
+
+#boton_Home{
+    margin: 2%;
+    background: none;
+    border: none;
+}
+
+#boton_admin{
+    margin: 2%;
+    background: none;
+    border: none;
+}
+
+.img_iconos{
+  display: block;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2%;
+  width: 100px;
+}
+
+.img_iconos_caratulas{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2%;
+  width: 300px;
+}
+
+#login_formulario{
+    margin-top: 17%;
+}
+
+#tablas{
+    background-color: rgba(210,130,240, 0.3) !important;
+    margin: auto !important;
+    width: 50% !important; 
+}
+
+#modal_catalogo{
+     background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+#modal_mapa_interior{
+    background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+#mapa{
+    height: 50px;
+    width: 50px;
+}
+
+#titulo_reproductor{
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.video-container iframe, .video-container object, .video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#pie{
+    background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+#pie img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
+  width: 50px;
+}

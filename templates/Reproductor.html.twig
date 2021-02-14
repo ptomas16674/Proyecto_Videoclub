@@ -1,0 +1,75 @@
+{# templates/Reproductor.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Block Boomer</title>
+                <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/scripts_Home.js') }}" type="text/javascript"></script>
+            {% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('(css/bootstrap.min.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('css/otros_estilos.css') }} " type="text/css">
+        {% endblock %}
+    </head>
+    <body class="text-light">
+		{% block body %}
+        <header>
+            {% block header %}
+		{{ include('cabecera.html.twig') }}
+            {%endblock %}
+        </header>
+	{% block contenido%}
+            {% block javascripts %}
+           <div class="container-fluid justify-content-center">
+               {% if error_estado is defined %}
+                   <div class="col-md text-light">
+                        <img class="img_iconos" src="{{ '/img/iconos/error.png' }}">
+                            <h1>
+                                  Lo siento, esta película ya ha sido alquilada.
+                            </h1>
+                         </div>
+               {% else %}
+                   {% if error is defined %}
+                        <div class="col-md text-light">
+                             <img class="img_iconos" src="{{ '/img/iconos/error.png' }}">
+                             <h1>
+                                  Lo siento, no ha seleccionado ninguna película para su alquiler.
+                              </h1>
+                         </div>
+                        
+                        <script>
+                            $("#boton_volver").remove();
+                        </script>
+                     {% else %}
+                        <div class="container mb-5">
+                            <div  id="titulo_reproductor" class="mb-5" >      
+                                <h1>{{ datos[0].nombre_pelicula }}</h1>
+                                <marquee behavior="scroll"> <img class="img_iconos_caratulas" src="{{ '/img/caratulas/'~ datos[0].id ~'.jpg' }}" onerror="ImgError(this)"></marquee>
+
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/5Cdv932eoU0" frameborder="0" width="560" height="315"></iframe>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                                <a href="{{ path('TerminarReproduccion',{'id': datos[0].id}) }}"><button type=button class='btn btn-outline-dark btn-secondary text-light btn-block mt-4'>Terminar Visualización</button></a>
+
+                                <script>
+                                     $("#nav").remove();
+                                </script>
+                    {% endif %}
+               {% endif %}
+               
+           </div>
+                {% endblock%}
+            {% endblock %}
+             
+            {% block footer %}
+               {{ include('Footer.html.twig') }}
+            {% endblock %}
+            
+        {% endblock %}
+    </body>
+</html>

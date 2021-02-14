@@ -1,0 +1,44 @@
+{% set tam_array = nombres | length %}
+    {% for i in range(0,tam_array)  %}
+        {% if (nombres[i] is defined) %}      
+            <div id='mo_{{nombres[i].id}}' class="modal fade bd-example-modal-lg p-2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                {% if (nombres[i] is defined) %}
+                    <div  class="modal-dialog modal-lg">
+                        <div  id="modal_catalogo" class="modal-content text-light">
+                            <div>
+                                <button id="cerrar" type="button" class="close" aria-label="Close"  data-backdrop="false"  data-dismiss="modal"><span aria-hidden="true">&times;</span></button> 
+                                <img class="img_iconos_caratulas" src="{{ '../img/caratulas/'~ nombres[i].id ~'.jpg' }}" onerror="ImgError(this)">
+                                <h1>Título: {{ nombres[i].nombre_pelicula }} </h1>
+                                <h1>Fecha de Lanzamiento: {{ nombres[i].fecha_lanzamiento }}</h1>
+                                <h1>Género: {{ nombres[i].genero }}</h1>
+                                <h1>Origen: {{ nombres[i].origen }}</h1>
+                                <h1>Duración: {{ nombres[i].Duracion }} minutos</h1>
+                                <h1>Precio: {{ nombres[i].precio }} €</h1>
+
+                                {% if nombres[i].alquilada==0  %}
+                                    <h1>Disponible: Sí</h1>
+                                    <a href="{{ path('Alquilar',{'id': nombres[i].id }) }}"><button type="button" class="btn btn-outline-success btn-lg mt-4">ALQUILAR</button></a>
+                                    {% if app.user %}
+                                       <a href="{{ path('Admin_Inventario_Editar',{'id': nombres[i].id }) }}"><button type="button" class="btn btn-outline-success btn-lg mt-4 ml-2">EDITAR</button></a>
+                                    {% endif %}
+                                {% else %}
+                                    <h1>Disponible: No</h1>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                            
+                            
+            {% block javascripts %}
+            <script>
+                function ImgError(source){
+                    source.src = "/img/default.png";
+                    source.onerror = "";
+                    return true;
+                }
+            </script>
+        {% endblock %}
+                {% endif %}
+            </div>
+{% endif %}
+    {% endfor %}

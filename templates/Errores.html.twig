@@ -1,0 +1,86 @@
+{# templates/Errores.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Block Boomer</title>
+                <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+            {% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('(css/bootstrap.min.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('css/otros_estilos.css') }} " type="text/css">
+        {% endblock %}
+    </head>
+    <body class="text-light">
+		{% block body %}
+        <header>                  
+        {% if error_empleados is defined %}
+            Lo siento, no existen empleados destacados por el momento.
+        {% else %}
+            {% block header %}
+		{{ include('cabecera.html.twig') }}
+            {%endblock %}
+        </header>
+                <div class="col-md text-light">
+                    <img class="img_iconos" src="{{ '/img/iconos/error.png' }}">
+                    <h1>
+                    {% if error_campo is defined %}
+                        {% if error_campo=='id' %}
+                           Lo siento, no tenemos ninguna película cuyo número sea {{ error_busqueda }}
+                        {% endif %}
+
+                        {% if error_campo=='nombre_pelicula' %}
+                           Lo siento, no tenemos ninguna película cuyo nombre contenga "{{ error_busqueda }}"
+                        {% endif %}
+
+                        {% if error_campo=='fecha_lanzamiento' %}
+                           Lo siento, no tenemos ninguna película lanzada en o cerca del año {{ error_busqueda }}
+                        {% endif %}
+
+                        {% if error_campo=='genero' %}
+                           Lo siento, no tenemos ninguna película cuyo género contenga "{{ error_busqueda }}"
+                        {% endif %}
+
+                        {% if error_campo=='origen' %}
+                           Lo siento, no tenemos ninguna película cuyo origen sea o contenga "{{ error_busqueda }}"
+                        {% endif %}
+
+                        {% if error_campo=='alquilada' %}
+                            Lo siento, no tenemos ninguna película en estos momentos con estos parámetros de alquiler.<br> Pruebe con 1 o 0
+                        {% endif %}
+
+                        {% if error_campo=='Duracion' %}
+                           Lo siento, no tenemos ninguna película cuya duración sean {{ error_busqueda }} minutos
+                        {% endif %}
+
+                        {% if error_campo=='precio' %}
+                           Lo siento, no tenemos ninguna película cuyo precio sea {{ error_busqueda }} €
+                        {% endif %}
+                    {% endif %}
+                    
+                    {% if error_nombres is defined or error_fecha_lanzamiento is defined or error_genero is defined or error_Duracion is defined or error_precio is defined or error_origen is defined %}
+                           Lo siento, no tenemos ninguna película  en estos momentos
+                    {% endif %}
+                    
+                    {% if error_filtrar is defined %}
+                        Lo siento, ha ocurrido un error al filtrar su petición de {{ elemento }}
+                    {% endif %}
+                    
+                    {% if error_login is defined %}
+                        Lo siento, ha de logearse en la aplicación para ver esta sección
+                    {% endif %}
+                    
+                    {% if error_login_admin is defined %}
+                        Lo siento, necesita permisos de administrador para realizar esta acción.
+                    {% endif %}
+                    </h1>
+                </div>
+                    {% endif %}
+                    
+    {% block footer %}
+        {{ include('Footer.html.twig') }}
+    {% endblock %}
+{% endblock%}
+    </body>
+</html>

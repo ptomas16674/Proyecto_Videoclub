@@ -1,0 +1,97 @@
+{# templates/Pago.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Block Boomer</title>
+                <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+            {% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('(css/bootstrap.min.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('css/otros_estilos.css') }} " type="text/css">
+        {% endblock %}
+    </head>
+    <body class="text-light">
+		{% block body %}
+        <header>
+            {% block header %}
+		{{ include('cabecera.html.twig') }}
+            {%endblock %}
+        </header>
+	{% block contenido%}
+            {% if datos!=[] %}
+               <div class="row d-flex justify-content-center">
+                <div class="row">
+                    <div class="col-md">
+                         <img class="img_iconos" src="{{ '/img/iconos/precio.png' }}" onerror="ImgError(this)">
+                         <div class="col-md">
+                             <h1>{{ datos[0].nombre_pelicula }}</h1>
+                             <img class="img_iconos_caratulas" src="{{ '/img/caratulas/'~ datos[0].id ~'.jpg' }}" onerror="ImgError(this)">
+                             <h1>{{ datos[0].precio }}€ </h1>
+                         </div>
+                        <div id="boton_paypal"></div>
+                    </div>
+                </div>
+               </div>  
+                         
+                         
+              <form action="{{ path('Reproductor') }}" method="post">
+                <input type="hidden" id="id"  name="id" value="{{ datos[0].id }}">
+                <button id="alquilar" type="submit" style="visibility: hidden"  class="btn btn-success">Confirmar</button>
+            </form>
+            {% endif %}
+              
+	{% endblock%}
+            
+            {% block footer %}
+               {{ include('Footer.html.twig') }}
+            {% endblock %}
+    {% endblock %}
+    
+    <div id="mo_errorPago" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                    <div  id="mod" class="modal-content">
+                        <button type="button" class="close" aria-label="Close" data-backdrop="false" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        {{ include('ErrorPago.html.twig') }}
+                    </div>
+            </div>
+    </div>
+    
+    <script src="https://www.paypal.com/sdk/js?client-id=AbCYRO7Ytrclr-ZH48rSeBjnK4Y_LIzZXvuPV5ArS1IKZTEesC0jMnIoutKsc4KTYKGqZlwXWH9z2C2b&currency=EUR" data-namespace="paypal_sdk"></script>
+    <script>
+       
+        paypal_sdk.Buttons({
+              style: {
+                layout:  'horizontal',
+                color:   'gold',
+                shape:   'rect',
+                label:   'paypal',
+                height: 55
+              },
+            createOrder: function(data, actions) {
+              return actions.order.create({
+                purchase_units: [{
+                  amount: {
+                    value: "{{ datos[0].precio}}",
+                    currency: 'EUR'
+                  }
+                }]
+              });
+            },
+            onApprove: function(data, actions) {
+              return actions.order.capture().then(function(details) {  
+                   $("#alquilar").click();
+                 });
+            },
+             onCancel: function (data) {
+                $('#mo_errorPago').modal('show'); 
+            },
+             onError: function (err) {
+                 $('#mo_errorPago').modal('show'); 
+            }
+          }).render('#boton_paypal');
+     </script>
+        
+    </body>
+</html>

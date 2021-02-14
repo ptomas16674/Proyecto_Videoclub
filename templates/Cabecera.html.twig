@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/otros_estilos.css') }}" type="text/css"/>
+    {% endblock %}
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+</head>
+<body>
+    <div class="container-fluid justify-content-center">
+        <p  id="logo" class="display-1 font-weight-bold text-center text-success p-2">Block Boome®</p>
+        
+        <div id="bloque_cabecera" class="container">
+           <nav id="nav" class="navbar navbar-expand-xl navbar-dark bg-dark mb-5 ">
+               
+              {% block javascripts %}
+                {% if app.request.cookies.get('usuario') is not empty %}
+                     <script>
+                        if (window.location.pathname!=="/Admin"){
+                            var boton_admin = document.createElement("BUTTON");
+                            boton_admin.innerHTML="<button type=button class='btn btn-outline-light btn-info btn-lg text-dark'>Panel de Admin</button>";
+                            boton_admin.id="boton_admin";
+                            document.getElementById("nav").appendChild(boton_admin);
+                            $("#boton_admin").click(function(){
+                                route="{{ path('Admin')}}";
+                                window.location.href=route;              
+                            }); 
+                        }
+                    </script>
+                
+                    <button id="login_cerrar" type="button" class="btn btn-outline-light btn-info btn-lg text-dark">Cerrar sesión</button>
+                {% else %}
+                    <button id="login_boton" type="button" class="btn btn-outline-light btn-info btn-lg text-dark">Acceso para Empleados</button>
+                {% endif %}
+              {% endblock %}
+            
+            <script>
+                if (window.location.pathname!=="/Home"){
+                    var boton_Home = document.createElement("BUTTON");
+                    boton_Home.innerHTML="<button type=button class='btn btn-outline-light btn-info btn-lg text-dark'>Home</button>";
+                    boton_Home.id="boton_Home";
+                    document.getElementById("nav").appendChild(boton_Home);
+                    $("#boton_Home").click(function(){
+                        route="{{ path('Home')}}";
+                        window.location.href=route;              
+                    }); 
+                    
+                    var boton_volver = document.createElement("BUTTON");
+                    boton_volver.innerHTML="<button type=button class='btn btn-outline-light btn-info btn-lg text-dark'>Volver</button>";
+                    boton_volver.id="boton_volver";
+                    document.getElementById("nav").appendChild(boton_volver);
+                    $("#boton_volver").click(function(){
+                         window.history.back();            
+                    });
+              }
+                
+                $("#login_boton").click(function(){
+                   route="{{ path('Login')}}";
+                   window.location.href=route;              
+                }); 
+                
+                $("#login_cerrar").click(function(){
+                   route="{{ path('logout')}}";
+                   window.location.href=route;              
+                }); 
+                </script>   
+                    <div class="container-fluid justify-content-center">
+                        <div class="row-fluid">
+                    
+                            <img id="buscar_img" class="mr-2" src="{{ '../img/iconos/buscar.png' }}" onerror="ImgError(this)">
+
+                              <form action="{{ path('Buscar')}}" method="post">
+                                  
+                                <label for="campo">
+                                    <select class="btn btn-dark rounded" name="campo" id="campo">
+                                        <option value="id">Número de Pelicula</option>
+                                        <option value="nombre_pelicula">Nombre</option>
+                                        <option value="fecha_lanzamiento">Fecha de Lanzamiento</option>
+                                        <option value="genero">Género</option>
+                                        <option value="origen">País de Origen</option>
+                                        <option value="alquilada">Estado de alquiler</option>
+                                        <option value="Duracion">Duración</option>
+                                        <option value="precio">Precio</option>
+                                    </select>
+                                </label>
+                                <input class="form-control mr-sm-2 border border-light rounded text-light" type="text" id="dato"  name="dato" aria-label="Search"  style=" background-color:transparent !important;">
+                              </form>
+                    </div>
+            </nav>
+        </div>
+    </div>
+                 
+             
+        <script>
+            function ImgError(source){
+                source.src = "/img/default.png";
+                source.onerror = "";
+                 return true;
+            }
+            </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{# templates/Index.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Bienvenido a Block Boomer</title>
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" >
+                        <link rel="stylesheet" href="{{ asset('css/otros_estilos.css') }}" type="text/css"/>
+		{% endblock %}
+    </head>
+    <body>
+		<div class="row justify-content-center">                                                          
+                    <div class="container-fluid justify-content-center">
+                        <p id="logo" class="display-1 font-weight-bold text-center text-success">Block Boome®</p>
+                        <img id="entrada_img" src="{{ "img/iconos/movie.png" }}">
+                        <p class="display-4 font-weight-bold text-center text-primary">Su videoclub de confianza</p>   
+                </div>     
+		{% block javascripts %}
+			<script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+			<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+		
+                        <a href="{{ path('Home') }}"><img id="welcome" src="{{ "img/iconos/dentro.png" }}" title="Entrar"></a>
+                
+                        <script>
+                            setTimeout(function(){ $("#welcome").click(); }, 3000);
+                        </script>
+                {% endblock %}
+    </body>
+</html>

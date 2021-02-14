@@ -1,0 +1,105 @@
+{# templates/Catalogo.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Block Boomer</title>
+                <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+            {% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('(css/bootstrap.min.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('css/otros_estilos.css') }} " type="text/css">
+        {% endblock %}
+    </head>
+    <body class="text-light">
+		{% block body %}
+        <header>
+            {% block header %}
+		{{ include('cabecera.html.twig') }}
+            {%endblock %}
+        </header>
+        
+	{% block contenido%}
+            <h1 class="text-center text-light text-uppercase mb-2 ">Filtrar Catálogo</h1>
+
+             <div class="container-fluid justify-content-center">
+              <div class="row">
+                 <div class="col-md">
+                    <img class="img_iconos" src="{{ "img/iconos/nombre_pelicula.png" }}" alt="Nombre Pelicula">
+                    <button id="nombres" type="button" class="btn btn-outline-light btn-lg">Nombres de Películas</button>
+                  </div>
+                  <div class="col-md">
+                    <img class="img_iconos" src="{{ "img/iconos/fecha.png" }}" alt="Fecha Lanzamiento">
+                    <button id="fechas" type="button" class="btn btn-outline-light btn-lg">Fecha de Lanzamiento</button>
+                  </div>
+                                 
+                   <div class="col-md">
+                     <img class="img_iconos" src="{{ "img/iconos/genero.png" }}" alt="Genero">
+                     <button id="generos" type="button" class="btn btn-outline-light btn-lg">Género de Peliculas</button>
+                   </div>
+                     
+                   <div class="col-md">
+                     <img class="img_iconos" src="{{ "img/iconos/tiempo.png" }}" alt="Tiempo">
+                     <button id="duracion"  type="button" class="btn btn-outline-light btn-lg">Duración</button>
+                   </div>
+                     
+                   <div class="col-md">
+                     <img class="img_iconos" src="{{ "img/iconos/precio.png" }}" alt="Precio">
+                     <button id="precio"  type="button" class="btn btn-outline-light btn-lg">Precio</button>
+                   </div>   
+                     
+              </div>
+                     
+                <div class="row">
+                    <div id="cat" class="col-md">
+                         <img class="img_iconos" src="{{ "img/iconos/origen.png" }}" alt="Origen">
+                         <button id="paises"  type="button" class="btn btn-outline-light btn-lg">País de Origen</button>
+                    </div>
+                </div>     
+                         
+             </div>
+                         
+        {% block footer %}
+            {{ include('Footer.html.twig') }}
+        {% endblock %}
+  
+  
+  {% block javascripts %}
+    <script>
+        $("#nombres").click(function(){
+         route="{{ path('Cat_Nombres')}}";
+         window.location.href=route; 
+        });
+        
+        $("#generos").click(function(){
+         route="{{ path('Cat_Generos')}}";
+         window.location.href=route; 
+        });
+        
+        $("#fechas").click(function(){
+         route="{{ path('Cat_Fechas')}}";
+         window.location.href=route; 
+        });
+        
+        $("#duracion").click(function(){
+         route="{{ path('Cat_Duracion')}}";
+         window.location.href=route; 
+        });
+        
+        $("#precio").click(function(){
+         route="{{ path('Cat_Precio')}}";
+         window.location.href=route; 
+        });
+        
+        $("#paises").click(function(){
+         route="{{ path('Cat_Paises')}}";
+         window.location.href=route; 
+        });
+    </script>
+  {% endblock %}
+  
+	{% endblock%}
+    {% endblock %}
+    </body>
+</html>
