@@ -31,5 +31,5 @@ Proyecto Final de FP2
 * Gestionar inventario: Permite añadir, ver, editar y eliminar ( si es que se tienen los permisos adecuados ) los datos de las películas.
 * Barra de búsqueda: Una barra presente de forma global que permite al usuario encontrar películas del inventario mediante varios tipos de datos de las mismas.
 * Pago: Si la película no está en estado de alquiler y el usuario desea verla, este tendrá que pagar una cantidad predeterminada en la base de datos para poder acceder al contenido. El pago se realiza mediante la API de Paypal y posee opciones tanto para el evento de cancelación del pago o error en el proceso.
-* 
+
 * Esos son los apartados más importantes. Existen más, por supuesto.
