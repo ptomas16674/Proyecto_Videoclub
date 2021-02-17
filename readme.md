@@ -18,7 +18,7 @@ Proyecto Final de FP2
 ## Resumen
 * Se trata de una pequeña aplicación web diseñada para ser usada por videoclubs de tamaño mediano.
 * Dada la poca popularidad de los videoclubs hoy en día, he optado por darle un enfoque más digital a la hora de proporcionar el producto al cliente, realizando algo parecido 
-* a un servicio de alquiler( véase Netflix ).
+  a un servicio de alquiler( véase Netflix ).
 * He subido sólo los archivos que yo he creado o modificado, ya que el framework pesa lo suyo.
 
 ## Resumen de Apartados de la aplicación
